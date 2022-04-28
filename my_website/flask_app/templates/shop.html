@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYGGE</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript">
+        var user = '{{ user.email }}'
+    </script>
+</head>
+<body>
+    <div class="nav">
+        <a class="/shop"><span>H</span><span>Y</span><span>G</span><span>G</span><span>E</span></a>
+        <div class="nav-a">
+            <a href="/shop" class="links">shop</a>
+            <a href="/cart" class="links">cart</a>
+            <a href="/dashboard" class="links">profile</a>
+        </div>
+    </div>
+    <div class="website-body text-main">New</div>
+    <div class="website-body wrapper">
+            {% for product in all_products %}
+            <div class="product">
+                <div class="product-view box purple"><img src="static/images/{{ product.label }}.jpeg" alt="" style="width: inherit"></div>
+                <div class="product-view"><p>${{ product.price }}</p></div>
+                <form action="/cart/item/add_to_db" method="POST">
+                    <input type="hidden" name="id" value="{{ product.id }}">
+                    <div class="product-view"><button type="submit" class="btn">Add to cart</button></div>
+                </form>
+                <div class="product-view">{{ product.label }}</div>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+</body>
+</html>

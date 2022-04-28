@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYGGE CART</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <a href="/" class="shop"><span>H</span><span>Y</span><span>G</span><span>G</span><span>E</span></a>
+        <div class="nav-a">
+            <a href="/shop" class="links">shop</a>
+            <a href="/cart" class="links">cart</a>
+            <a href="/dashboard" class="links">profile</a>
+        </div>
+    </div>
+    <div>
+    <div class="website-body">
+    <div class=>
+        <h2>Shopping Cart</h2>
+        <div class="cart-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-table">Product</th>
+                        <th class="text-table">Quantity</th>
+                        <th class="text-table">Price</th>
+                        <th class="text-table">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in my_cart %}
+                    {% if item.user_id == user.id%}
+                    <tr>
+                        <td class="text-table">{{ item.label }}</td>
+                        <form >
+                        <td><input type="number" min="1" id="qty" placeholder="1" max="{{ item.quantity }}" class="text-table box-input"></td>
+                        <td id="price">${{ item.price }}</td>
+                        </form>
+                        <form action="/remove/cart/item" method="POST">
+                        <input type="hidden" name="id" value="{{ item.product_id }}">
+                        <td><button type="submit" class="btn">remove</button></td>
+                        </form>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div class="">
+            
+            <h2>Order Summary</h2>
+            <div class="product-view check-out nav-a">
+                <p>subtotal</p> <p>  </p>
+            </div>
+            <div class="product-view check-out nav-a">
+                <p>tax</p> <p>%6.5</p>
+            </div>
+            <div class="product-view check-out nav">
+                <p>shipping</p> <p>$9.50</p>
+            </div>
+            <div class="product-view check-out nav-a">
+                <p>estimated total</p> <p>$$$</p>
+            </div>
+            <div class="product-view check-out nav-a">
+                <button action="#" method="POST" class="btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

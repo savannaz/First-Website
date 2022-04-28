@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYGGE New Product</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <a class="shop"><span>H</span><span>Y</span><span>G</span><span>G</span><span>E</span></a>
+        <div class="nav-a">
+            <a href="/shop" class="links">shop</a>
+            <a href="/cart" class="links">cart</a>
+            <a href="/dashboard" class="links">profile</a>
+        </div>
+    </div>
+    <div class="nav-a">
+        <p>Logged in as <span class="purple">{{user.email}}</span></p>
+    </div>
+    <div class="website-body">
+        <form action="/product/add_to_db" method="POST">
+            <h2>Add a New Product</h2>
+            {% with messages = get_flashed_messages(category_filter=['product']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+
+                <div class="form-info">
+                    <label for="label">Product Name</label>
+                    <input type="text" name="label" cols="20" class="form-input">
+                </div>
+                <div class="form-info">
+                    <label for="price">Price</label>
+                    <input type="number" name="price" step="0.01" class="form-input">
+                </div>
+                <div class="form-info">
+                    <label for="description">Description</label>
+                    <textarea name="description" cols="20" rows="5" class="form-input"></textarea>
+                </div>
+                <div class="form-info">
+                    <label for="category">Category</label>
+                    <input type="text" name="category" cols="20" class="form-input">
+                </div>
+                <div class="form-info">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" placeholder="0" min="0" name="quantity"  cols="20"class="form-input">
+                </div>
+                <input type="submit" value="Add Product" class="btn">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

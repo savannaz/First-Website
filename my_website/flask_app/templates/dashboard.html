@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <a class="shop"><span>H</span><span>Y</span><span>G</span><span>G</span><span>E</span></a>
+        <div class="nav-a">
+            <a href="/shop" class="links">shop</a>
+            <a href="/cart" class="links">cart</a>
+            <a href="/dashboard" class="links">profile</a>
+        </div>
+    </div>
+    <div class="nav-a">
+        <p>Logged in as <span class="purple">{{user.email}}</span></p>
+        <div style="display: flex;">
+        <a href="/logout" class="btn">logout</a>
+        {% if user.email == "savanna.efl@gmail.com" %}
+            <a href="/product/new" class="btn">Add a new product</a>
+            </div>
+        </div>
+        <div class="website-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-table">user</th>
+                        <th class="text-table">order</th>
+                        <th cclass="text-table">date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-table"></th>
+                        <th class="text-table"></th>
+                        <th class="text-table"></th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="website-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="text-table">image</th>
+                            <th class="text-table">product</th>
+                            <th class="text-table">price</th>
+                            <th class="text-table">options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in all_products %}
+                        <tr>
+                            <th><img src="static/images/{{ product.label }}.jpeg" alt="" class="small-image"></th>
+                            <th><a href="/view/product/{{product.id}}" class="text-table">{{ product.label }}</a></th>
+                            <th>{{ product.price }}</th>
+                            <th><a href="/edit/product/{{product.id}}" class="text-table">edit</a><a href="/delete/product/{{product.id}}" class="text-table">delete</a></th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+            <a href="/account/address" class="btn">Add a new address</a>
+            </div>
+        </div>
+
+        <div class="website-body">
+                <thead>
+                    <tr>
+                        <th class="text-table">address</th>
+                        <th class="text-table ">options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-table ">order</th>
+                        <th class="text-table ">date</th>
+                        <th class="text-table ">total</th>
+                        <th class="text-table ">view</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        {% endif %}
+</body>
+</html>

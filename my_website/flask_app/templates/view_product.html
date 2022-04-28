@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <a class="shop"><span>H</span><span>Y</span><span>G</span><span>G</span><span>E</span></a>
+        <div class="nav-a">
+            <a href="/shop" class="links">shop</a>
+            <a href="/cart" class="links">cart</a>
+            <a href="/dashboard" class="links">profile</a>
+        </div>
+    </div>
+        <div class="website-body"><h2>{{ product.label }}</h2></div>
+        <div class="website-body"><h3> Current Stock: {{ product.quantity }}</h3></div>
+        <div class="website-body"><h3>${{ product.price }} category: {{product.category}}</h3></div>
+        <div class="website-body">{{ product.description }} </div>
+        {% if user.email == "savanna.efl@gmail.com" %}
+        <div class="website-body">In the store since: {{ product.created_at }}</div>
+        <div class="website-body">Last update: {{ product.updated_at }}</div>
+        {% endif %}
+</body>
+</html>
