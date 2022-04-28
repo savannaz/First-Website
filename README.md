@@ -1,8 +1,8 @@
 # This is my first e-commerce website
-My goal is to make it compleetely functioning while not losing out on the design aspect.
-This project is far from complete. Here is my checklist so far. 
+My goal is to make it fully functioning while not losing out on the design aspect.
 This project uses flask, python3, html5 , external css3, js, & mysql db.
-If you would like to help or want to make your own feel free to fork the repo. 
+This project is far from complete as you can see from my todo list.
+If you would like with my todo or want to make your own e-commerce website feel free to fork the repo. 
 - ✅ means complete
 - 🆗 means implemented, not quite complete but getting there
 - ⭕ means currently working on
